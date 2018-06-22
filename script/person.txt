@@ -1,1 +1,9 @@
-sample TestTaro テスト太郎
+soy Mukai 向井理
+soy Higashi 東山紀之
+sio Oikawa 及川光博
+sio Eita 瑛太
+sio Ayano 綾野剛
+sauce Abe 阿部寛
+sauce Hirai 平井堅
+miso Matsuken 松平健
+miso Watanabe 渡辺謙

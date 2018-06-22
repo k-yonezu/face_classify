@@ -43,10 +43,7 @@ imageGather () {
   pushd $tmp/${class}/${enName}
 
   # wgetでJPEG画像のみ収集
-  wget -r -l 1 -A jpg,JPG,jpeg,JPEG -H \
-  -erobots=off \
-  --exclude-domains=bing.com,bing.net \
-  $url
+  wget -r -l 1 -A jpg,JPG,jpeg,JPEG -H -random-wait -erobots=off --exclude-domains=bing.com,bing.net $url
 
   find . -type f \( -name "*.jpg" -o -name "*.JPG" -o -name "*.jpeg" -o -name "*.JPEG" \) | \
     awk \
