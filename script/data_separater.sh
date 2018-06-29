@@ -23,10 +23,10 @@ touch ${teFile}
 function getFaceType () {
 
     case "$1" in
-        "soy" ) echo 1;;
-        "sio" ) echo 2;;
-        "sauce" ) echo 3;;
-        "miso" ) echo 4;;
+        "soy" ) echo 0;;
+        "sio" ) echo 1;;
+        "sauce" ) echo 2;;
+        "miso" ) echo 3;;
     esac
 }
 

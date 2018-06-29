@@ -12,3 +12,8 @@ execute_files/model.ckpt.meta
 execute_files/trainTensor.py
 tmp/*
 !.gitkeep
+
+script/model/
+script/__pycache__/
+script/testDat.csv
+script/trainDat.csv
