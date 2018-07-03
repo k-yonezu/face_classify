@@ -1,0 +1,13 @@
+.row{
+	width:700px;
+	margin-right: auto;
+	margin-left : auto;
+}
+
+.header{
+	width:auto;
+	height:80px;
+	background-color:#1e93c1;
+	font-size:3em;
+	text-align : center;
+}

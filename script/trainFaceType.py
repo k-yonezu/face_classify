@@ -241,4 +241,4 @@ if __name__ == '__main__':
         keep_prob: 1.0}))
 
     # 最終的なモデルを保存
-    saver.save(sess, "./model/model.ckpt")
+    saver.save(sess, "./app/model/model.ckpt")
