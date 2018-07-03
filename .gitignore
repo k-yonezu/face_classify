@@ -17,3 +17,4 @@ script/model/
 script/__pycache__/
 script/testDat.csv
 script/trainDat.csv
+script/uploads/

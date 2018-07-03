@@ -17,52 +17,60 @@ popd
 
 # URLエンコード関数定義
 urlencode () {
-  echo "$1" | nkf -WwMQ | tr = %
+	echo "$1" | nkf -WwMQ | tr = %
 }
 
 # 画像収集関数定義
 imageGather () {
-  if [ $# -ne 3 ]; then
-    return false
-  fi
+	if [ $# -ne 3 ]; then
+		return false
+	fi
 
-  class=$1
-  enName=$2
-  jaName=$3
+	class=$1
+	enName=$2
+	jaName=$3
 
-  # 人物名をエンコード
-  encodedName=`urlencode $3`
-  echo $encodedName
+	# 人物名をエンコード
+	encodedName=`urlencode $3`
+	echo $encodedName
 
-  # URLを作成
-  url="https://www.bing.com/images/search?&q="
-  url=$url$encodedName
+	# URLを作成
+	# url="https://www.bing.com/images/search?&q="
+	# url=$url$encodedName
+	url="http://www.heso.blue/?text="
+	param="&max_id=1"
+	url=$url$encodedName$param
+	echo $url
 
-  # テンポラリディレクトリ作成・移動
-  mkdir -p $tmp/${class}/${enName}
-  pushd $tmp/${class}/${enName}
+	# テンポラリディレクトリ作成・移動
+	mkdir -p $tmp/${class}/${enName}
+	pushd $tmp/${class}/${enName}
 
-  # wgetでJPEG画像のみ収集
-  wget -r -l 1 -A jpg,JPG,jpeg,JPEG -H -random-wait -erobots=off --exclude-domains=bing.com,bing.net $url
+	# wgetでJPEG画像のみ収集
+	wget -r -l 1 -A jpg,JPG,jpeg,JPEG -H \
+		-erobots=off \
+		-random-wait \
+		--exclude-domains=bing.com,bing.net \
+		$url
 
-  find . -type f \( -name "*.jpg" -o -name "*.JPG" -o -name "*.jpeg" -o -name "*.JPEG" \) | \
-    awk \
-    -v "out=$aout" \
-    -v "class=$class" \
-    -v "enName=$enName" \
-    '{
-      command = sprintf("cp %s %s/%s_%s_%05d.jpg", $0, out, class, enName, NR)
-      # コマンドを実行して結果を取得
-      buf = system(command);
-      # stream をclose
-      close(command);
-    }'
+	find . -type f \( -name "*.jpg" -o -name "*.JPG" -o -name "*.jpeg" -o -name "*.JPEG" \) | \
+		awk \
+		-v "out=$aout" \
+		-v "class=$class" \
+		-v "enName=$enName" \
+		'{
+	command = sprintf("cp %s %s/%s_%s_%05d.jpg", $0, out, class, enName, NR)
+	# コマンドを実行して結果を取得
+	buf = system(command);
+	# stream をclose
+	close(command);
+}'
 
-  popd
+popd
 
 }
 
 # 画像収集実行
 while read line; do
-  imageGather $line
+	imageGather $line
 done < $PERSON
